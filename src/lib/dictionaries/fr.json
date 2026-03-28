@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "services": "Services",
+    "about": "À Propos",
+    "contact": "Contact",
+    "start_project": "Démarrer un Projet"
+  },
+  "hero": {
+    "title": "Bâtissons le Futur de",
+    "subtitle": "l'Identité Numérique",
+    "description": "EreborHub conçoit des infrastructures sécurisées et des plateformes d'identité qui permettent aux entreprises modernes de croître avec confiance et impact.",
+    "cta_primary": "Démarrer votre Projet",
+    "cta_secondary": "Voir nos Travaux",
+    "labels": {
+      "digital_identity": "Identité Numérique",
+      "global_protocol": "Protocole Global",
+      "verification_trust": "Confiance de Vérification",
+      "infra_scale": "Échelle Infra",
+      "multi_region_active": "Multi-Région Actif",
+      "server_load": "Charge Serveur",
+      "core_engine": "Moteur Central Erebor",
+      "optimized_runtime": "Runtime Kernel Optimisé"
+    }
+  },
+  "services": {
+    "title_prefix": "Conçu pour",
+    "title_highlight": "l'Excellence",
+    "explore": "Explorer",
+    "learn_more": "En savoir plus sur notre service {service}"
+  },
+  "projects": {
+    "title": "Déployer l'Impact à l'Échelle",
+    "view_all": "Voir Tous les Projets",
+    "featured": "Étude de Cas",
+    "view_details": "Voir les Détails",
+    "year": "Année",
+    "highlights": "Points Forts",
+    "tech_stack": "Stack Technique"
+  },
+  "footer": {
+    "tagline": "Concevoir des fondations sécurisées pour la prochaine génération d'infrastructures numériques.",
+    "links": "Liens",
+    "legal": "Mentions Légales",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "all_rights_reserved": "Tous droits réservés."
+  }
+}

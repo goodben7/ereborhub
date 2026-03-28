@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "start_project": "Start Project"
+  },
+  "hero": {
+    "title": "Building the Future of",
+    "subtitle": "Digital Identity",
+    "description": "EreborHub engineers secure infrastructure and identity platforms that empower modern businesses to scale with confidence and impact.",
+    "cta_primary": "Start Your Project",
+    "cta_secondary": "View Our Work",
+    "labels": {
+      "digital_identity": "Digital Identity",
+      "global_protocol": "Global Protocol",
+      "verification_trust": "Verification Trust",
+      "infra_scale": "Infra Scale",
+      "multi_region_active": "Multi-Region Active",
+      "server_load": "Server Load",
+      "core_engine": "Erebor Core Engine",
+      "optimized_runtime": "Optimized Kernel Runtime"
+    }
+  },
+  "services": {
+    "title_prefix": "Engineered for",
+    "title_highlight": "Excellence",
+    "explore": "Explore",
+    "learn_more": "Learn more about our {service} service"
+  },
+  "projects": {
+    "title": "Deploying Impact at Scale",
+    "view_all": "View All Projects",
+    "featured": "Featured Case Study",
+    "view_details": "View Details",
+    "year": "Year",
+    "highlights": "Key Highlights",
+    "tech_stack": "Tech Stack"
+  },
+  "footer": {
+    "tagline": "Engineering secure foundations for the next generation of digital infrastructure.",
+    "links": "Links",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "all_rights_reserved": "All rights reserved."
+  }
+}
