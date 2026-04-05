@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn about EreborHub — a technology company based in Kinshasa, DRC, building premium digital products for Africa and the world.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: locale === "fr" ? "À Propos" : "About",
+    description:
+      locale === "fr"
+        ? "Découvrez EreborHub — une entreprise technologique construisant des produits numériques premium et des infrastructures résilientes."
+        : "Learn about EreborHub — a technology company building premium digital products and resilient infrastructures.",
+  };
+}
 
 export default function AboutLayout({
   children,

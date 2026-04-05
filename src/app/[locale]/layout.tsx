@@ -14,57 +14,76 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://ereborhub.cloud"),
-  title: {
-    default: "EreborHub — Premium Technology Solutions",
-    template: "%s | EreborHub",
-  },
-  description:
-    "EreborHub delivers custom software development, digital identity solutions (KYC/KYB/AML), cloud infrastructure, and enterprise software for modern organizations.",
-  keywords: [
-    "custom software development",
-    "digital identity",
-    "KYC",
-    "KYB",
-    "AML",
-    "cloud solutions",
-    "DevOps",
-    "enterprise software",
-    "Kinshasa",
-    "Congo",
-  ],
-  authors: [{ name: "EreborHub", url: "https://ereborhub.cloud" }],
-  creator: "EreborHub",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://ereborhub.cloud",
-    siteName: "EreborHub",
-    title: "EreborHub — Premium Technology Solutions",
-    description:
-      "Custom software, digital identity, cloud infrastructure, and enterprise solutions built for the future.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "EreborHub — Premium Technology Solutions",
-      },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  const title =
+    locale === "fr"
+      ? "EreborHub conçoit des infrastructures sécurisées et des plateformes d'identité"
+      : "EreborHub engineers secure infrastructure and identity platforms";
+
+  const description =
+    locale === "fr"
+      ? "EreborHub permet aux entreprises modernes de croître avec confiance et impact grâce à des solutions technologiques premium."
+      : "EreborHub empowers modern businesses to scale with confidence and impact through premium technology solutions.";
+
+  return {
+    metadataBase: new URL("https://ereborhub.cloud"),
+    title: {
+      default: title,
+      template: "%s | EreborHub",
+    },
+    description,
+    keywords: [
+      "custom software development",
+      "digital identity",
+      "AI solutions",
+      "cloud computing",
+      "SaaS",
+      "enterprise software",
+      "EreborHub",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "EreborHub — Premium Technology Solutions",
-    description:
-      "Custom software, digital identity, cloud infrastructure, and enterprise solutions.",
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+    authors: [{ name: "EreborHub", url: "https://ereborhub.cloud" }],
+    creator: "EreborHub",
+    openGraph: {
+      type: "website",
+      locale: locale === "fr" ? "fr_FR" : "en_US",
+      url: `https://ereborhub.cloud/${locale}`,
+      siteName: "EreborHub",
+      title,
+      description,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/og-image.png"],
+    },
+    alternates: {
+      canonical: `https://ereborhub.cloud/${locale}`,
+      languages: {
+        en: "https://ereborhub.cloud/en",
+        fr: "https://ereborhub.cloud/fr",
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 import { i18n } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/dictionaries";

@@ -105,9 +105,9 @@ export default function ProjectsPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.1]"
           >
-            {locale === "fr" ? "Vitrine de" : "Showcase of"} <br />
+            {locale === "fr" ? "L'Art de concevoir" : "The Art of Engineering"} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "l'Excellence Technique" : "Engineering Excellence"}
+              {locale === "fr" ? "l'Excellence Numérique" : "Digital Excellence"}
             </span>
           </motion.h1>
           <motion.p
@@ -117,8 +117,8 @@ export default function ProjectsPage({
             className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
             {locale === "fr" 
-              ? "Chaque projet est le fruit d'une collaboration étroite, d'une rigueur technique et d'un engagement à fournir une valeur durable."
-              : "Each project is a story of deep collaboration, technical rigor, and a commitment to delivering lasting value."}
+              ? "Des infrastructures robustes aux plateformes de pointe, chaque projet témoigne de notre capacité à transformer la complexité en solutions élégantes et efficaces."
+              : "From robust infrastructures to cutting-edge platforms. Each project demonstrates our ability to transform complexity into elegant, high-performance solutions."}
           </motion.p>
         </div>
       </section>

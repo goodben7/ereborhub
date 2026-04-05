@@ -128,7 +128,7 @@ export function ProjectsSection({ locale, dict }: { locale: "en" | "fr"; dict: a
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects
-            .filter((p) => p.id !== "kyc-manager" && p.id !== "edu-connect")
+            .filter((p) => p.id !== "kyc-manager" && p.id !== "vendor")
             .map((project, index) => (
             <motion.div
               key={project.id}

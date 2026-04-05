@@ -54,22 +54,26 @@ export const services: Service[] = [
     iconBg: "bg-blue-50 text-blue-600",
     borderGlow: "group-hover:border-blue-200",
     glowUrl: "rgba(56,189,248,0.15)",
-    bgImage: "/software_dev_bg.png",
+    bgImage: "/software_dev_bg.jpg",
     features: {
       en: [
-        "Responsive web applications (React, Next.js, Vue)",
-        "Cross-platform mobile apps (React Native, Flutter)",
-        "REST APIs & GraphQL backends (Node.js, Python, Go)",
-        "Real-time systems with WebSockets & event streaming",
-        "Database design & optimization (PostgreSQL, MongoDB)",
+        "Responsive web applications (React, Next.js, Vue, SvelteKit)",
+        "Cross-platform & native mobile apps (React Native, Flutter, Swift)",
+        "REST APIs & GraphQL backends (Node.js, Python, Go, Rust)",
+        "AI Integration & LLMs (OpenAI, LangChain, Custom Models)",
+        "Real-time systems with WebSockets & event streaming (Kafka, Redis)",
+        "Database design & optimization (PostgreSQL, MongoDB, Prisma)",
+        "Serverless architectures & Microservices",
         "Legacy system modernization & migration",
       ],
       fr: [
-        "Applications web responsives (React, Next.js, Vue)",
-        "Applications mobiles multiplateformes (React Native, Flutter)",
-        "Backends API REST & GraphQL (Node.js, Python, Go)",
-        "Systèmes temps réel avec WebSockets & streaming d'événements",
-        "Conception & optimisation de bases de données (PostgreSQL, MongoDB)",
+        "Applications web responsives (React, Next.js, Vue, SvelteKit)",
+        "Applications mobiles multiplateformes & natives (React Native, Flutter, Swift)",
+        "Backends API REST & GraphQL (Node.js, Python, Go, Rust)",
+        "Intégration d'Intelligence Artificielle (OpenAI, LangChain, LLMs)",
+        "Systèmes temps réel avec WebSockets & streaming d'événements (Kafka, Redis)",
+        "Conception & optimisation de bases de données (PostgreSQL, MongoDB, Prisma)",
+        "Architectures Serverless & Microservices",
         "Modernisation & migration de systèmes existants",
       ]
     },
@@ -103,7 +107,7 @@ export const services: Service[] = [
     iconBg: "bg-sky-50 text-sky-600",
     borderGlow: "group-hover:border-sky-200",
     glowUrl: "rgba(129,140,248,0.15)",
-    bgImage: "/digital_identity_bg.png",
+    bgImage: "/digital_identity_bg.jpg",
     features: {
       en: [
         "KYC (Know Your Customer) onboarding flows",
@@ -152,7 +156,7 @@ export const services: Service[] = [
     iconBg: "bg-indigo-50 text-indigo-600",
     borderGlow: "group-hover:border-indigo-200",
     glowUrl: "rgba(167,139,250,0.15)",
-    bgImage: "/cloud_solutions_bg.png",
+    bgImage: "/cloud_solutions_bg.jpg",
     features: {
       en: [
         "Cloud architecture design (AWS, GCP, Azure)",
@@ -201,7 +205,7 @@ export const services: Service[] = [
     iconBg: "bg-violet-50 text-violet-600",
     borderGlow: "group-hover:border-violet-200",
     glowUrl: "rgba(244,114,182,0.15)",
-    bgImage: "/business_software_bg.png",
+    bgImage: "/business_software_bg.jpg",
     features: {
       en: [
         "Custom ERP & CRM integrations",

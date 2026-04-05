@@ -68,7 +68,7 @@ export default function AboutPage({
     {
       icon: Target,
       title: locale === "fr" ? "Précision" : "Precision",
-      description: locale === "fr" 
+      description: locale === "fr"
         ? "Nous accordons une importance capitale aux détails. Chaque décision d'architecture, chaque ligne de code, chaque interaction UX — tout est fait avec intention."
         : "We care deeply about the details. Every architecture decision, every line of code, every UX interaction — done with intention.",
       color: "text-blue-500",
@@ -117,7 +117,7 @@ export default function AboutPage({
   const team = [
     {
       name: "Stéphane N. Kalambayi",
-      role: locale === "fr" ? "Architecte d'Applications Lead" : "Lead Application Architect",
+      role: locale === "fr" ? "Lead Application Architect" : "Lead Application Architect",
       description: locale === "fr"
         ? "Spécialisé dans les systèmes web et mobiles évolutifs, avec une expertise approfondie dans les plateformes fintech et logistiques cloud-native."
         : "Specializing in scalable web and mobile systems with deep expertise in cloud-native fintech and logistics platforms.",
@@ -126,7 +126,7 @@ export default function AboutPage({
     },
     {
       name: "Paul Nganda",
-      role: locale === "fr" ? "Lead Full-Stack Senior" : "Senior Full-Stack Lead",
+      role: locale === "fr" ? "Lead Senior Full-Stack" : "Lead Senior Full-Stack",
       description: locale === "fr"
         ? "Ingénieur multidisciplinaire avec plus de 6 ans d'expérience dans l'architecture de solutions web complexes et de plateformes de streaming haute performance."
         : "Multi-disciplinary engineer with 6+ years of experience in architecting complex web solutions and high-performance streaming platforms.",
@@ -135,16 +135,16 @@ export default function AboutPage({
     },
     {
       name: "Benjamin K. Mukena",
-      role: locale === "fr" ? "Architecte Backend Senior" : "Senior Backend Architect",
+      role: locale === "fr" ? "Senior Backend Architect" : "Senior Backend Architect",
       description: locale === "fr"
-        ? "Expert en systèmes bancaires centraux et écosystèmes d'API sécurisés, spécialisé dans les architectures distribuées à haute disponibilité."
+        ? "Expert en core banking systems et écosystèmes d'API sécurisés, spécialisé dans les architectures distribuées à haute disponibilité."
         : "Expert in core banking systems and secure API ecosystems, specializing in high-availability distributed architectures.",
       initials: "BK",
       gradient: "from-indigo-700 to-violet-600",
     },
     {
       name: "Christ Ilunga Menga",
-      role: locale === "fr" ? "Responsable du Développement Commercial et des Opérations" : "Business Development & Operations Lead",
+      role: locale === "fr" ? "Responsable du Développement Commercial et des Opérations" : "Business Development & Lead Operations",
       description: locale === "fr"
         ? "Orchestre l'expansion du marché et l'excellence opérationnelle, faisant le pont entre l'ingénierie technique et la croissance commerciale du SaaS."
         : "Orchestrates market expansion and operational excellence, bridging the gap between technical engineering and SaaS commercial growth.",
@@ -165,9 +165,9 @@ export default function AboutPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.08]"
           >
-            {locale === "fr" ? "Conçu à Kinshasa" : "Built in Kinshasa"}<br />
+            {locale === "fr" ? "Conçu pour l'Excellence" : "Built for Excellence"}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "Conçu pour le monde" : "Built for the world"}
+              {locale === "fr" ? "Pensé pour l'Impact" : "Designed for Impact"}
             </span>
           </motion.h1>
           <motion.p
@@ -176,9 +176,9 @@ export default function AboutPage({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            {locale === "fr" 
-              ? "Nous sommes une entreprise technologique au cœur de l'Afrique, créant des produits numériques premium qui résolvent des problèmes réels — localement et mondialement."
-              : "We are a technology company from the heart of Africa, building premium digital products that solve real problems — locally and globally."}
+            {locale === "fr"
+              ? "Nous concevons des écosystèmes technologiques premium et des infrastructures numériques qui permettent aux entreprises innovantes de passer à l'échelle supérieure avec assurance."
+              : "We engineer premium technological ecosystems and digital infrastructures that empower innovative businesses to scale with absolute confidence."}
           </motion.p>
         </div>
       </section>
@@ -203,7 +203,7 @@ export default function AboutPage({
               </h2>
               <div className="space-y-4 text-slate-500 text-lg leading-relaxed">
                 <p>
-                  {locale === "fr" 
+                  {locale === "fr"
                     ? "EreborHub a été fondé sur la conviction que l'Afrique mérite une technologie de classe mondiale — construite localement, avec un contexte profond et les standards d'ingénierie les plus élevés."
                     : "EreborHub was founded on the belief that Africa deserves world-class technology — built locally, with deep context and the highest engineering standards."}
                 </p>
@@ -524,7 +524,7 @@ export default function AboutPage({
             </h2>
 
             <p className="text-slate-400 text-lg sm:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-              {locale === "fr" 
+              {locale === "fr"
                 ? "Qu'il s'agisse d'un flux de travail complexe, d'une plateforme personnalisée ou d'une infrastructure numérique — nous avons l'expertise pour donner vie à votre vision."
                 : "Whether it's a complex workflow, custom platform, or digital infrastructure — we have the expertise to bring your vision to life."}
             </p>

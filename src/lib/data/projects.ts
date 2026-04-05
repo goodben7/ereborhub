@@ -281,7 +281,7 @@ export const projects: Project[] = [
     featured: false,
     color: "#059669",
     glowUrl: "rgba(5,150,105,0.15)",
-    imageUrl: "/ptn.png",
+    imageUrl: "/educonnect.jpeg",
     href: "/projects#edu-connect",
   },
 ];
