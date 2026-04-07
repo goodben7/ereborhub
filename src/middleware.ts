@@ -1,19 +1,17 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { i18n } from '@/lib/dictionaries'
-import { match as matchLocale } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
 
 function getLocale(): string {
   return i18n.defaultLocale
 }
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale: string) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )
 
   // Redirect if there is no locale
