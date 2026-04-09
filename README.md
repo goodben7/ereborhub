@@ -72,7 +72,7 @@ docker compose up --build
 Vérifier qu’il répond :
 
 ```bash
-curl -I http://127.0.0.1:3000
+curl -I http://127.0.0.1:3001
 ```
 
 Consulter les logs :
@@ -93,7 +93,7 @@ Le setup prévu est :
 
 - **Next.js** dans Docker
 - **Caddy** installé sur le VPS hors Docker
-- **reverse proxy** Caddy vers `127.0.0.1:3000`
+- **reverse proxy** Caddy vers `127.0.0.1:3001`
 
 Lancer l’application sur le VPS :
 
@@ -106,7 +106,7 @@ Exemple de bloc Caddy :
 ```caddy
 ton-domaine.com, www.ton-domaine.com {
     encode zstd gzip
-    reverse_proxy 127.0.0.1:3000
+    reverse_proxy 127.0.0.1:3001
 }
 ```
 
@@ -129,7 +129,7 @@ sudo systemctl reload caddy
 
 ## Notes utiles
 
-- Le port applicatif Docker est exposé uniquement sur `127.0.0.1:3000` pour être servi proprement par Caddy.
+- Le port applicatif Docker est exposé uniquement sur `127.0.0.1:3001` pour être servi proprement par Caddy.
 
 ---
 
