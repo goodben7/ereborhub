@@ -21,9 +21,9 @@ export default async function HomePage({
     <>
       <HeroSection locale={locale} dict={dict.hero} />
       <ServicesSection locale={locale} dict={dict.services} />
-      <FeaturesSection locale={locale} />
+      <FeaturesSection dict={dict.features} />
       <ProjectsSection locale={locale} dict={dict.projects} />
-      <CTASection locale={locale} />
+      <CTASection locale={locale} dict={dict.cta} />
     </>
   );
 }

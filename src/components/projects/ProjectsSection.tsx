@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { projects } from "@/lib/data/projects";
+import type { ProjectsDictionary } from "@/lib/dictionaries";
 
 const cardVariants: Variants = {
   rest: { y: 0, boxShadow: "0px 0px 0px rgba(0,0,0,0)" },
@@ -86,7 +87,7 @@ const NetworkVisualizer = ({ color }: { color: string }) => {
   );
 };
 
-export function ProjectsSection({ locale, dict }: { locale: "en" | "fr"; dict: any }) {
+export function ProjectsSection({ locale, dict }: { locale: "en" | "fr"; dict: ProjectsDictionary }) {
   return (
     <section className="py-20 lg:py-32 bg-[#010314] relative overflow-hidden" id="projects">
       {/* Ambient Deep Background Glows */}

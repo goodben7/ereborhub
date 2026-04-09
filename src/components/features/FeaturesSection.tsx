@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { Rocket, Lock, Layers, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { FeaturesDictionary } from "@/lib/dictionaries";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,44 +22,28 @@ const itemVariants: Variants = {
   }
 };
 
-export function FeaturesSection({ locale }: { locale: string }) {
+export function FeaturesSection({ dict }: { dict: FeaturesDictionary }) {
   const features = [
     {
       icon: Rocket,
-      title: locale === "fr" ? "Rapidité de déploiement" : "Speed to Market",
-      description: locale === "fr" 
-        ? "Des processus agiles et des équipes expérimentées garantissent que votre produit est lancé rapidement sans sacrifier la qualité ni la sécurité."
-        : "Agile processes and experienced teams ensure your product ships fast without sacrificing quality or security.",
       color: "from-blue-500 to-cyan-400",
       shadow: "group-hover:shadow-blue-500/10",
       border: "group-hover:border-blue-200"
     },
     {
       icon: Lock,
-      title: locale === "fr" ? "Sécurité avant tout" : "Security First",
-      description: locale === "fr"
-        ? "Chaque système que nous construisons suit les meilleures pratiques de sécurité — de la conception des API au renforcement de l'infrastructure."
-        : "Every system we build follows best-in-class security practices — from API design to infrastructure hardening.",
       color: "from-indigo-500 to-purple-400",
       shadow: "group-hover:shadow-indigo-500/10",
       border: "group-hover:border-indigo-200"
     },
     {
       icon: Layers,
-      title: locale === "fr" ? "Architecture évolutive" : "Scalable Architecture",
-      description: locale === "fr"
-        ? "Nous concevons des systèmes qui grandissent avec vous — microservices, backends pilotés par les événements et infrastructure cloud-native."
-        : "We design systems that grow with you — microservices, event-driven backends, and cloud-native infrastructure.",
       color: "from-sky-400 to-blue-500",
       shadow: "group-hover:shadow-sky-500/10",
       border: "group-hover:border-sky-200"
     },
     {
       icon: Users,
-      title: locale === "fr" ? "Partenariat à long terme" : "Long-term Partnership",
-      description: locale === "fr"
-        ? "Nous ne nous contentons pas de livrer du code. Nous restons impliqués tout au long du lancement, de la mise à l'échelle et de l'évolution continue du produit."
-        : "We don't just hand off code. We stay involved through launch, scaling, and ongoing product evolution.",
       color: "from-violet-500 to-fuchsia-400",
       shadow: "group-hover:shadow-violet-500/10",
       border: "group-hover:border-violet-200"
@@ -83,10 +68,10 @@ export function FeaturesSection({ locale }: { locale: string }) {
             className="pr-0 lg:pr-8"
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight">
-              {locale === "fr" ? "Des partenaires technologiques" : "Technology partners"}<br />
+              {dict.title_prefix}<br />
               <div className="relative inline-block mt-2">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400 relative z-10">
-                  {locale === "fr" ? "en qui vous pouvez avoir confiance" : "you can trust"}
+                  {dict.title_highlight}
                 </span>
                 <motion.div
                   initial={{ width: 0 }}
@@ -99,9 +84,7 @@ export function FeaturesSection({ locale }: { locale: string }) {
             </h2>
 
             <p className="text-lg sm:text-xl text-slate-500 leading-relaxed mb-10 max-w-lg">
-              {locale === "fr" 
-                ? "De l'idée à la production, nous apportons une expertise technique approfondie, une communication transparente et un engagement envers l'excellence qui nous distingue."
-                : "From idea to production, we bring deep technical expertise, transparent communication, and a commitment to excellence that sets us apart."}
+              {dict.description}
             </p>
 
             {/* Animated Decorative Bar */}
@@ -135,11 +118,12 @@ export function FeaturesSection({ locale }: { locale: string }) {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            {features.map((feature) => {
+            {features.map((feature, index) => {
               const Icon = feature.icon;
+              const item = dict.items[index];
               return (
                 <motion.div
-                  key={feature.title}
+                  key={item.title}
                   variants={itemVariants}
                   whileHover={{ y: -6, scale: 1.02 }}
                   className="group relative h-full cursor-default"
@@ -176,10 +160,10 @@ export function FeaturesSection({ locale }: { locale: string }) {
                     </div>
 
                     <h3 className="text-base font-extrabold text-slate-900 mb-3 tracking-tight group-hover:text-blue-700 transition-colors duration-300">
-                      {feature.title}
+                      {item.title}
                     </h3>
                     <p className="text-sm text-slate-500 leading-relaxed">
-                      {feature.description}
+                      {item.description}
                     </p>
                   </div>
                 </motion.div>

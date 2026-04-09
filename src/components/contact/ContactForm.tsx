@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Loader2, CheckCircle } from "lucide-react";
+import type { ContactFormDictionary } from "@/lib/dictionaries";
 
 type FormState = "idle" | "loading" | "success";
 
@@ -13,7 +14,7 @@ interface FormData {
   message: string;
 }
 
-export function ContactForm({ locale }: { locale: string }) {
+export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
   const [state, setState] = useState<FormState>("idle");
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -25,13 +26,13 @@ export function ContactForm({ locale }: { locale: string }) {
 
   const validate = (): boolean => {
     const newErrors: Partial<FormData> = {};
-    if (!formData.name.trim()) newErrors.name = locale === "fr" ? "Le nom est requis" : "Name is required";
+    if (!formData.name.trim()) newErrors.name = dict.validation.name_required;
     if (!formData.email.trim()) {
-      newErrors.email = locale === "fr" ? "L'adresse email est requise" : "Email is required";
+      newErrors.email = dict.validation.email_required;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = locale === "fr" ? "Veuillez entrer un email valide" : "Please enter a valid email";
+      newErrors.email = dict.validation.email_invalid;
     }
-    if (!formData.message.trim()) newErrors.message = locale === "fr" ? "Le message est requis" : "Message is required";
+    if (!formData.message.trim()) newErrors.message = dict.validation.message_required;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -66,10 +67,10 @@ export function ContactForm({ locale }: { locale: string }) {
           <CheckCircle className="w-8 h-8 text-green-600" />
         </div>
         <h3 className="text-xl font-bold text-slate-900 mb-2">
-          {locale === "fr" ? "Message envoyé !" : "Message Sent!"}
+          {dict.success_title}
         </h3>
         <p className="text-slate-600">
-          {locale === "fr" ? "Nous vous répondrons dans les 24 heures." : "We'll get back to you within 24 hours."}
+          {dict.success_description}
         </p>
       </motion.div>
     );
@@ -88,7 +89,7 @@ export function ContactForm({ locale }: { locale: string }) {
         {/* Name */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">
-            {locale === "fr" ? "Nom Complet" : "Full Name"} <span className="text-red-500">*</span>
+            {dict.name_label} <span className="text-red-500">*</span>
           </label>
           <input
             id="name"
@@ -108,7 +109,7 @@ export function ContactForm({ locale }: { locale: string }) {
         {/* Email */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
-            {locale === "fr" ? "Adresse Email" : "Email Address"} <span className="text-red-500">*</span>
+            {dict.email_label} <span className="text-red-500">*</span>
           </label>
           <input
             id="email"
@@ -129,7 +130,7 @@ export function ContactForm({ locale }: { locale: string }) {
       {/* Company */}
       <div>
         <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1.5">
-          {locale === "fr" ? "Entreprise" : "Company"} <span className="text-slate-400 font-normal">({locale === "fr" ? "optionnel" : "optional"})</span>
+          {dict.company_label} <span className="text-slate-400 font-normal">({dict.optional})</span>
         </label>
         <input
           id="company"
@@ -137,7 +138,7 @@ export function ContactForm({ locale }: { locale: string }) {
           type="text"
           value={formData.company}
           onChange={handleChange}
-          placeholder={locale === "fr" ? "Votre Entreprise" : "Your Company"}
+          placeholder={dict.company_placeholder}
           className={inputClass("company")}
         />
       </div>
@@ -145,7 +146,7 @@ export function ContactForm({ locale }: { locale: string }) {
       {/* Message */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1.5">
-          {locale === "fr" ? "Message" : "Message"} <span className="text-red-500">*</span>
+          {dict.message_label} <span className="text-red-500">*</span>
         </label>
         <textarea
           id="message"
@@ -153,7 +154,7 @@ export function ContactForm({ locale }: { locale: string }) {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          placeholder={locale === "fr" ? "Dites-nous en plus sur votre projet..." : "Tell us about your project..."}
+          placeholder={dict.message_placeholder}
           className={`${inputClass("message")} resize-none`}
           aria-describedby={errors.message ? "message-error" : undefined}
         />
@@ -171,11 +172,11 @@ export function ContactForm({ locale }: { locale: string }) {
         {state === "loading" ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            {locale === "fr" ? "Envoi en cours..." : "Sending..."}
+            {dict.submit_loading}
           </>
         ) : (
           <>
-            {locale === "fr" ? "Envoyer le message" : "Send Message"}
+            {dict.submit_idle}
             <Send className="w-4 h-4" />
           </>
         )}

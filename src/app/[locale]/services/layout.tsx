@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getDictionary } from "@/lib/get-dictionary";
+import type { Locale } from "@/lib/dictionaries";
 
 export async function generateMetadata({
   params,
@@ -6,13 +8,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
 
   return {
-    title: locale === "fr" ? "Services" : "Services",
-    description:
-      locale === "fr"
-        ? "Les services EreborHub: ingénierie logicielle, intégration IA, infrastructures cloud et architectures d'entreprise."
-        : "EreborHub services: software engineering, AI integration, cloud infrastructures, and enterprise architectures.",
+    title: dict.metadata.pages.services.title,
+    description: dict.metadata.pages.services.description,
   };
 }
 

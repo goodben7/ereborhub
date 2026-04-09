@@ -5,16 +5,15 @@ import { motion } from "framer-motion";
 import {
   Users,
   Target,
-  Rocket,
   ShieldCheck,
   Heart,
-  Lightbulb,
   ArrowRight,
   Eye,
   Zap,
   MapPin
 } from "lucide-react";
 import Link from "next/link";
+import { getDictionaryByLocale } from "@/lib/client-dictionaries";
 
 const AnimatedHeroBackground = () => {
   return (
@@ -63,95 +62,42 @@ export default function AboutPage({
 }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as "en" | "fr";
+  const dict = getDictionaryByLocale(locale);
+  const pageDict = dict.about_page;
 
   const values = [
     {
       icon: Target,
-      title: locale === "fr" ? "Précision" : "Precision",
-      description: locale === "fr"
-        ? "Nous accordons une importance capitale aux détails. Chaque décision d'architecture, chaque ligne de code, chaque interaction UX — tout est fait avec intention."
-        : "We care deeply about the details. Every architecture decision, every line of code, every UX interaction — done with intention.",
       color: "text-blue-500",
-      bg: "bg-blue-50",
-      border: "border-blue-100",
     },
     {
       icon: Eye,
-      title: locale === "fr" ? "Transparence" : "Transparency",
-      description: locale === "fr"
-        ? "Pas de boîtes noires. Nous tenons nos clients informés à chaque étape, de la planification au déploiement, avec une communication claire."
-        : "No black boxes. We keep clients informed at every stage, from planning to deployment, with clear communication.",
       color: "text-indigo-500",
-      bg: "bg-indigo-50",
-      border: "border-indigo-100",
     },
     {
       icon: Heart,
-      title: locale === "fr" ? "Impact" : "Impact",
-      description: locale === "fr"
-        ? "Nous construisons des logiciels qui créent une valeur réelle et mesurable — mesurée en vies améliorées, en entreprises développées et en problèmes résolus."
-        : "We build software that creates real, measurable value — measured in lives improved, businesses grown, and problems solved.",
       color: "text-violet-500",
-      bg: "bg-violet-50",
-      border: "border-violet-100",
     },
     {
       icon: ShieldCheck,
-      title: locale === "fr" ? "Fiabilité" : "Reliability",
-      description: locale === "fr"
-        ? "Aucune interruption critique sur l'ensemble de notre portefeuille. Nous concevons pour la résilience — parce que votre disponibilité est notre réputation."
-        : "Zero critical outages across our portfolio. We engineer for resilience — because your uptime is our reputation.",
       color: "text-sky-500",
-      bg: "bg-sky-50",
-      border: "border-sky-100",
     },
   ];
 
-  const stats = [
-    { value: "50+", label: locale === "fr" ? "Projets Livrés" : "Projects Delivered", icon: Zap },
-    { value: "30+", label: locale === "fr" ? "Clients Servis" : "Clients Served", icon: Users },
-    { value: "4+", label: locale === "fr" ? "Années d'Activité" : "Years Operating", icon: MapPin },
-    { value: "0", label: locale === "fr" ? "Pannes Critiques" : "Critical Outages", icon: ShieldCheck },
-  ];
+  const stats = pageDict.mission.stats.map((stat, index) => ({
+    ...stat,
+    icon: [Zap, Users, MapPin, ShieldCheck][index],
+  }));
 
-  const team = [
-    {
-      name: "Stéphane N. Kalambayi",
-      role: locale === "fr" ? "Lead Application Architect" : "Lead Application Architect",
-      description: locale === "fr"
-        ? "Spécialisé dans les systèmes web et mobiles évolutifs, avec une expertise approfondie dans les plateformes fintech et logistiques cloud-native."
-        : "Specializing in scalable web and mobile systems with deep expertise in cloud-native fintech and logistics platforms.",
-      initials: "SK",
-      gradient: "from-blue-700 to-indigo-600",
-    },
-    {
-      name: "Paul Nganda",
-      role: locale === "fr" ? "Lead Senior Full-Stack" : "Lead Senior Full-Stack",
-      description: locale === "fr"
-        ? "Ingénieur multidisciplinaire avec plus de 6 ans d'expérience dans l'architecture de solutions web complexes et de plateformes de streaming haute performance."
-        : "Multi-disciplinary engineer with 6+ years of experience in architecting complex web solutions and high-performance streaming platforms.",
-      initials: "PN",
-      gradient: "from-sky-600 to-blue-500",
-    },
-    {
-      name: "Benjamin K. Mukena",
-      role: locale === "fr" ? "Senior Backend Architect" : "Senior Backend Architect",
-      description: locale === "fr"
-        ? "Expert en core banking systems et écosystèmes d'API sécurisés, spécialisé dans les architectures distribuées à haute disponibilité."
-        : "Expert in core banking systems and secure API ecosystems, specializing in high-availability distributed architectures.",
-      initials: "BK",
-      gradient: "from-indigo-700 to-violet-600",
-    },
-    {
-      name: "Christ Ilunga Menga",
-      role: locale === "fr" ? "Responsable du Développement Commercial et des Opérations" : "Business Development & Lead Operations",
-      description: locale === "fr"
-        ? "Orchestre l'expansion du marché et l'excellence opérationnelle, faisant le pont entre l'ingénierie technique et la croissance commerciale du SaaS."
-        : "Orchestrates market expansion and operational excellence, bridging the gap between technical engineering and SaaS commercial growth.",
-      initials: "CI",
-      gradient: "from-violet-600 to-purple-500",
-    },
-  ];
+  const team = pageDict.team.members.map((member, index) => ({
+    ...member,
+    gradient: [
+      "from-blue-700 to-indigo-600",
+      "from-sky-600 to-blue-500",
+      "from-indigo-700 to-violet-600",
+      "from-violet-600 to-purple-500",
+    ][index],
+  }));
   return (
     <div className="bg-white min-h-screen">
 
@@ -165,9 +111,9 @@ export default function AboutPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.08]"
           >
-            {locale === "fr" ? "Conçu pour l'Excellence" : "Built for Excellence"}<br />
+            {pageDict.hero.title_prefix}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "Pensé pour l'Impact" : "Designed for Impact"}
+              {pageDict.hero.title_highlight}
             </span>
           </motion.h1>
           <motion.p
@@ -176,9 +122,7 @@ export default function AboutPage({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            {locale === "fr"
-              ? "Nous concevons des écosystèmes technologiques premium et des infrastructures numériques qui permettent aux entreprises innovantes de passer à l'échelle supérieure avec assurance."
-              : "We engineer premium technological ecosystems and digital infrastructures that empower innovative businesses to scale with absolute confidence."}
+            {pageDict.hero.description}
           </motion.p>
         </div>
       </section>
@@ -196,27 +140,15 @@ export default function AboutPage({
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8 tracking-tight leading-[1.1]">
-                {locale === "fr" ? "Transformer des problèmes complexes en " : "Turning complex problems into "}
+                {pageDict.mission.title_prefix}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                  {locale === "fr" ? "solutions élégantes" : "elegant solutions"}
+                  {pageDict.mission.title_highlight}
                 </span>
               </h2>
               <div className="space-y-4 text-slate-500 text-lg leading-relaxed">
-                <p>
-                  {locale === "fr"
-                    ? "EreborHub a été fondé sur la conviction que l'Afrique mérite une technologie de classe mondiale — construite localement, avec un contexte profond et les standards d'ingénierie les plus élevés."
-                    : "EreborHub was founded on the belief that Africa deserves world-class technology — built locally, with deep context and the highest engineering standards."}
-                </p>
-                <p>
-                  {locale === "fr"
-                    ? "Nous travaillons avec des startups, des banques, des ONG et des entreprises à travers le continent — et au-delà — pour construire des logiciels qui comptent."
-                    : "We work with startups, banks, NGOs, and enterprises across the continent — and beyond — to build software that matters."}
-                </p>
-                <p>
-                  {locale === "fr"
-                    ? "Depuis nos bureaux de Kinshasa, nous servons des clients en RDC, en Afrique, en Europe et en Amérique du Nord."
-                    : "From our offices in Kinshasa, we serve clients across the DRC, Africa, Europe, and North America."}
-                </p>
+                {pageDict.mission.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </motion.div>
 
@@ -385,20 +317,19 @@ export default function AboutPage({
             className="text-center mb-24"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              {locale === "fr" ? "Ce qui nous anime " : "What drives us "}
+              {pageDict.values.title_prefix}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-                {locale === "fr" ? "au quotidien" : "every day"}
+                {pageDict.values.title_highlight}
               </span>
             </h2>
             <p className="mt-4 text-slate-400 text-lg max-w-xl mx-auto">
-              {locale === "fr"
-                ? "Quatre principes guident chacune de nos décisions — de l'architecture à la communication."
-                : "Four principles guide every decision we make — from architecture to communication."}
+              {pageDict.values.description}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((val, i) => {
+              const item = pageDict.values.items[i];
               const Icon = val.icon;
               const accentColors: Record<string, string> = {
                 "text-blue-500": "from-blue-500 to-cyan-400",
@@ -410,7 +341,7 @@ export default function AboutPage({
 
               return (
                 <motion.div
-                  key={val.title}
+                  key={item.title}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
@@ -438,8 +369,8 @@ export default function AboutPage({
                     />
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-white mb-3 tracking-tight">{val.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{val.description}</p>
+                  <h3 className="text-xl font-extrabold text-white mb-3 tracking-tight">{item.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
 
                   {/* Animated bottom line */}
                   <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
@@ -462,7 +393,7 @@ export default function AboutPage({
             className="text-center mb-20"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {locale === "fr" ? "Rencontrez les bâtisseurs" : "Meet the builders"}
+              {pageDict.team.title}
             </h2>
           </motion.div>
 
@@ -517,16 +448,14 @@ export default function AboutPage({
 
 
             <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight leading-[1.1]">
-              {locale === "fr" ? "Prêt à construire quelque chose de" : "Ready to build something"} <br />
+              {pageDict.cta.title_prefix} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-cyan-400">
-                {locale === "fr" ? "vraiment remarquable ?" : "truly remarkable?"}
+                {pageDict.cta.title_highlight}
               </span>
             </h2>
 
             <p className="text-slate-400 text-lg sm:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-              {locale === "fr"
-                ? "Qu'il s'agisse d'un flux de travail complexe, d'une plateforme personnalisée ou d'une infrastructure numérique — nous avons l'expertise pour donner vie à votre vision."
-                : "Whether it's a complex workflow, custom platform, or digital infrastructure — we have the expertise to bring your vision to life."}
+              {pageDict.cta.description}
             </p>
 
             <Link
@@ -537,7 +466,7 @@ export default function AboutPage({
               <div className="absolute inset-0 bg-primary/40 blur-2xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative flex items-center gap-3 px-10 py-5 bg-white text-slate-950 rounded-2xl font-black text-xl hover:bg-white hover:scale-[1.03] active:scale-95 transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(34,211,238,0.3)]">
-                {locale === "fr" ? "Entrer en contact" : "Get in touch"}
+                {pageDict.cta.button}
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" strokeWidth={3} />
               </div>
             </Link>

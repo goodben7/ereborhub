@@ -1,10 +1,15 @@
 {
   "nav": {
+    "home": "Accueil",
     "projects": "Projets",
     "services": "Services",
     "about": "À Propos",
     "contact": "Contact",
-    "start_project": "Démarrer un Projet"
+    "start_project": "Démarrer un Projet",
+    "start_short": "Démarrer",
+    "logo_alt": "Logo EreborHub",
+    "language": "Langue",
+    "menu": "Menu"
   },
   "hero": {
     "title": "Bâtissons le Futur de",
@@ -27,7 +32,11 @@
     "title_prefix": "Conçu pour",
     "title_highlight": "l'Excellence",
     "explore": "Explorer",
-    "learn_more": "En savoir plus sur notre service {service}"
+    "learn_more": "En savoir plus sur notre service {service}",
+    "cta_title_prefix": "Prêt à transformer votre",
+    "cta_title_highlight": "univers numérique ?",
+    "cta_description": "Rejoignez plus de 50 partenaires qui font confiance à EreborHub.",
+    "cta_button": "Contactez-nous"
   },
   "projects": {
     "title": "Concevoir l'excellence numérique - Impact",
@@ -44,6 +53,224 @@
     "legal": "Mentions Légales",
     "privacy": "Confidentialité",
     "terms": "Conditions d'Utilisation",
-    "all_rights_reserved": "Tous droits réservés."
+    "all_rights_reserved": "Tous droits réservés.",
+    "logo_alt": "Logo EreborHub",
+    "description": "Conception d'infrastructures numériques haute performance et d'écosystèmes sécurisés pour la prochaine génération d'innovateurs mondiaux.",
+    "services_title": "Services",
+    "company_title": "Entreprise",
+    "custom_software": "Logiciels Sur Mesure",
+    "digital_identity": "Identité Numérique",
+    "cloud_solutions": "Infrastructure Cloud",
+    "business_software": "Solutions Entreprise",
+    "about_us": "À Propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "get_in_touch": "Contactez-nous"
+  },
+  "cta": {
+    "title_prefix": "Construisons ensemble la",
+    "title_highlight": "prochaine grande innovation",
+    "description": "Rejoignez les rangs des entreprises innovantes qui construisent leur avenir numérique avec EreborHub. Nos experts sont prêts à transformer votre vision en un produit de référence.",
+    "primary_button": "Commencer maintenant",
+    "secondary_button": "Contacter le service commercial"
+  },
+  "features": {
+    "title_prefix": "Des partenaires technologiques",
+    "title_highlight": "en qui vous pouvez avoir confiance",
+    "description": "De l'idée à la production, nous apportons une expertise technique approfondie, une communication transparente et un engagement envers l'excellence qui nous distingue.",
+    "items": [
+      {
+        "title": "Rapidité de déploiement",
+        "description": "Des processus agiles et des équipes expérimentées garantissent que votre produit est lancé rapidement sans sacrifier la qualité ni la sécurité."
+      },
+      {
+        "title": "Sécurité avant tout",
+        "description": "Chaque système que nous construisons suit les meilleures pratiques de sécurité — de la conception des API au renforcement de l'infrastructure."
+      },
+      {
+        "title": "Architecture évolutive",
+        "description": "Nous concevons des systèmes qui grandissent avec vous — microservices, backends pilotés par les événements et infrastructure cloud-native."
+      },
+      {
+        "title": "Partenariat à long terme",
+        "description": "Nous ne nous contentons pas de livrer du code. Nous restons impliqués tout au long du lancement, de la mise à l'échelle et de l'évolution continue du produit."
+      }
+    ]
+  },
+  "contact_form": {
+    "validation": {
+      "name_required": "Le nom est requis",
+      "email_required": "L'adresse email est requise",
+      "email_invalid": "Veuillez entrer un email valide",
+      "message_required": "Le message est requis"
+    },
+    "success_title": "Message envoyé !",
+    "success_description": "Nous vous répondrons dans les 24 heures.",
+    "name_label": "Nom Complet",
+    "email_label": "Adresse Email",
+    "company_label": "Entreprise",
+    "optional": "optionnel",
+    "company_placeholder": "Votre Entreprise",
+    "message_label": "Message",
+    "message_placeholder": "Dites-nous en plus sur votre projet...",
+    "submit_loading": "Envoi en cours...",
+    "submit_idle": "Envoyer le message"
+  },
+  "services_page": {
+    "hero": {
+      "title_prefix": "Des services conçus pour",
+      "title_highlight": "chaque défi",
+      "description": "Quatre domaines d'expertise couvrant l'ensemble des besoins technologiques modernes — des logiciels à grande échelle aux réseaux d'identité mondiaux."
+    },
+    "features_aria_label": "Caractéristiques de {service}",
+    "icon_aria_label": "Icône pour {service}"
+  },
+  "projects_page": {
+    "hero": {
+      "title_prefix": "L'Art de concevoir",
+      "title_highlight": "l'Excellence Numérique",
+      "description": "Des infrastructures robustes aux plateformes de pointe, chaque projet témoigne de notre capacité à transformer la complexité en solutions élégantes et efficaces."
+    },
+    "key_results": "Résultats Clés",
+    "backend": "Backend",
+    "frontend": "Frontend",
+    "discuss_project": "Discuter d'un projet similaire"
+  },
+  "contact_page": {
+    "hero": {
+      "title_prefix": "Bâtissons quelque chose de",
+      "title_highlight": "remarquable ensemble",
+      "description": "Parlez-nous de votre projet et nous vous répondrons dans un délai d'un jour ouvrable avec une réponse réfléchie."
+    },
+    "intro": {
+      "title_prefix": "Prêt à commencer ?",
+      "title_highlight": "Nous serions ravis de vous entendre.",
+      "description": "Que vous ayez besoin d'une plateforme web personnalisée, d'un système de conformité ou d'une infrastructure cloud, notre équipe est là pour vous aider à le construire correctement."
+    },
+    "info_labels": {
+      "email": "Email",
+      "location": "Localisation",
+      "website": "Site Web"
+    },
+    "form_section": {
+      "title": "Parlez-nous de votre projet",
+      "description": "Remplissez le formulaire ci-dessous et notre équipe vous recontactera dans les 24 heures."
+    }
+  },
+  "about_page": {
+    "hero": {
+      "title_prefix": "Conçu pour l'Excellence",
+      "title_highlight": "Pensé pour l'Impact",
+      "description": "Nous concevons des écosystèmes technologiques premium et des infrastructures numériques qui permettent aux entreprises innovantes de passer à l'échelle supérieure avec assurance."
+    },
+    "mission": {
+      "title_prefix": "Transformer des problèmes complexes en",
+      "title_highlight": "solutions élégantes",
+      "paragraphs": [
+        "EreborHub a été fondé sur la conviction que l'Afrique mérite une technologie de classe mondiale — construite localement, avec un contexte profond et les standards d'ingénierie les plus élevés.",
+        "Nous travaillons avec des startups, des banques, des ONG et des entreprises à travers le continent — et au-delà — pour construire des logiciels qui comptent.",
+        "Depuis nos bureaux de Kinshasa, nous servons des clients en RDC, en Afrique, en Europe et en Amérique du Nord."
+      ],
+      "stats": [
+        {
+          "value": "50+",
+          "label": "Projets Livrés"
+        },
+        {
+          "value": "30+",
+          "label": "Clients Servis"
+        },
+        {
+          "value": "4+",
+          "label": "Années d'Activité"
+        },
+        {
+          "value": "0",
+          "label": "Pannes Critiques"
+        }
+      ]
+    },
+    "values": {
+      "title_prefix": "Ce qui nous anime",
+      "title_highlight": "au quotidien",
+      "description": "Quatre principes guident chacune de nos décisions — de l'architecture à la communication.",
+      "items": [
+        {
+          "title": "Précision",
+          "description": "Nous accordons une importance capitale aux détails. Chaque décision d'architecture, chaque ligne de code, chaque interaction UX — tout est fait avec intention."
+        },
+        {
+          "title": "Transparence",
+          "description": "Pas de boîtes noires. Nous tenons nos clients informés à chaque étape, de la planification au déploiement, avec une communication claire."
+        },
+        {
+          "title": "Impact",
+          "description": "Nous construisons des logiciels qui créent une valeur réelle et mesurable — mesurée en vies améliorées, en entreprises développées et en problèmes résolus."
+        },
+        {
+          "title": "Fiabilité",
+          "description": "Aucune interruption critique sur l'ensemble de notre portefeuille. Nous concevons pour la résilience — parce que votre disponibilité est notre réputation."
+        }
+      ]
+    },
+    "team": {
+      "title": "Rencontrez les bâtisseurs",
+      "members": [
+        {
+          "name": "Stéphane N. Kalambayi",
+          "role": "Lead Application Architect",
+          "description": "Spécialisé dans les systèmes web et mobiles évolutifs, avec une expertise approfondie dans les plateformes fintech et logistiques cloud-native.",
+          "initials": "SK"
+        },
+        {
+          "name": "Paul Nganda",
+          "role": "Lead Senior Full-Stack",
+          "description": "Ingénieur multidisciplinaire avec plus de 6 ans d'expérience dans l'architecture de solutions web complexes et de plateformes de streaming haute performance.",
+          "initials": "PN"
+        },
+        {
+          "name": "Benjamin K. Mukena",
+          "role": "Senior Backend Architect",
+          "description": "Expert en core banking systems et écosystèmes d'API sécurisés, spécialisé dans les architectures distribuées à haute disponibilité.",
+          "initials": "BK"
+        },
+        {
+          "name": "Christ Ilunga Menga",
+          "role": "Responsable du Développement Commercial et des Opérations",
+          "description": "Orchestre l'expansion du marché et l'excellence opérationnelle, faisant le pont entre l'ingénierie technique et la croissance commerciale du SaaS.",
+          "initials": "CI"
+        }
+      ]
+    },
+    "cta": {
+      "title_prefix": "Prêt à construire quelque chose de",
+      "title_highlight": "vraiment remarquable ?",
+      "description": "Qu'il s'agisse d'un flux de travail complexe, d'une plateforme personnalisée ou d'une infrastructure numérique — nous avons l'expertise pour donner vie à votre vision.",
+      "button": "Entrer en contact"
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "EreborHub conçoit des infrastructures sécurisées et des plateformes d'identité",
+      "description": "EreborHub permet aux entreprises modernes de croître avec confiance et impact grâce à des solutions technologiques premium."
+    },
+    "pages": {
+      "about": {
+        "title": "À Propos",
+        "description": "Découvrez EreborHub — une entreprise technologique construisant des produits numériques premium et des infrastructures résilientes."
+      },
+      "projects": {
+        "title": "Projets",
+        "description": "Explorez le portfolio d'EreborHub : Plateformes d'identité, ERP hybrides et SaaS technologiques innovants."
+      },
+      "services": {
+        "title": "Services",
+        "description": "Les services EreborHub: ingénierie logicielle, intégration IA, infrastructures cloud et architectures d'entreprise."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Contactez l'équipe EreborHub. Parlez-nous de votre projet et nous vous répondrons dans les 24 heures."
+      }
+    }
   }
 }

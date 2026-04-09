@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
+import type { CtaDictionary } from "@/lib/dictionaries";
 
-export function CTASection({ locale }: { locale: string }) {
+export function CTASection({ locale, dict }: { locale: string; dict: CtaDictionary }) {
   return (
     <section className="py-24 relative overflow-hidden bg-white" id="cta">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,16 +37,14 @@ export function CTASection({ locale }: { locale: string }) {
           {/* Content */}
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tighter leading-[1.05]">
-              {locale === "fr" ? "Construisons ensemble la " : "Let's build the "} <br />
+              {dict.title_prefix} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-cyan-400 italic">
-                {locale === "fr" ? "prochaine grande innovation" : "next big thing"}
+                {dict.title_highlight}
               </span>.
             </h2>
 
             <p className="text-slate-400 text-lg sm:text-xl mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-              {locale === "fr"
-                ? "Rejoignez les rangs des entreprises innovantes qui construisent leur avenir numérique avec EreborHub. Nos experts sont prêts à transformer votre vision en un produit de référence."
-                : "Join the ranks of innovative companies building their digital future with EreborHub. Our experts are ready to turn your vision into a landmark product."}
+              {dict.description}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -57,7 +56,7 @@ export function CTASection({ locale }: { locale: string }) {
                 <div className="absolute inset-0 bg-primary/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#010314] font-black text-xl transition-all duration-300 group-hover:bg-slate-50 group-hover:scale-[1.03] active:scale-95 shadow-xl">
-                  {locale === "fr" ? "Commencer maintenant" : "Get Started Now"}
+                  {dict.primary_button}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" strokeWidth={3} />
                 </div>
               </Link>
@@ -67,7 +66,7 @@ export function CTASection({ locale }: { locale: string }) {
                 className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
               >
                 <Mail className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all" />
-                {locale === "fr" ? "Contacter le service commercial" : "Contact Sales"}
+                {dict.secondary_button}
               </a>
             </div>
 

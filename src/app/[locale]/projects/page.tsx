@@ -5,23 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { 
-  ArrowRight, 
   CheckCircle2, 
   Code2, 
   Server, 
-  Cpu, 
-  Globe, 
-  ShieldCheck, 
-  Zap,
-  Activity,
-  Layers,
-  Database,
   ExternalLink,
-  BookOpen,
-  ShoppingBag
 } from "lucide-react";
 
 import { projects } from "@/lib/data/projects";
+import { getDictionaryByLocale } from "@/lib/client-dictionaries";
 
 
 const AnimatedHeroBackground = () => {
@@ -89,6 +80,8 @@ export default function ProjectsPage({
 }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as "en" | "fr";
+  const dict = getDictionaryByLocale(locale);
+  const pageDict = dict.projects_page;
 
   return (
     <div className="bg-white min-h-screen">
@@ -105,9 +98,9 @@ export default function ProjectsPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.1]"
           >
-            {locale === "fr" ? "L'Art de concevoir" : "The Art of Engineering"} <br />
+            {pageDict.hero.title_prefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "l'Excellence Numérique" : "Digital Excellence"}
+              {pageDict.hero.title_highlight}
             </span>
           </motion.h1>
           <motion.p
@@ -116,9 +109,7 @@ export default function ProjectsPage({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            {locale === "fr" 
-              ? "Des infrastructures robustes aux plateformes de pointe, chaque projet témoigne de notre capacité à transformer la complexité en solutions élégantes et efficaces."
-              : "From robust infrastructures to cutting-edge platforms. Each project demonstrates our ability to transform complexity into elegant, high-performance solutions."}
+            {pageDict.hero.description}
           </motion.p>
         </div>
       </section>
@@ -177,7 +168,7 @@ export default function ProjectsPage({
                   {/* Highlights */}
                   <div className="mb-8">
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
-                      {locale === "fr" ? "Résultats Clés" : "Key Results"}
+                      {pageDict.key_results}
                     </p>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
                       {project.highlights[locale].map((h: string) => (
@@ -195,7 +186,7 @@ export default function ProjectsPage({
                     <div className="flex-1">
                       <div className="flex items-center gap-1.5 mb-2.5">
                         <Server className="w-3.5 h-3.5 text-slate-400" />
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Backend</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{pageDict.backend}</p>
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {project.backendTech.map((tech: string) => (
@@ -211,7 +202,7 @@ export default function ProjectsPage({
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5 mb-2.5">
                           <Code2 className="w-3.5 h-3.5 text-blue-400" />
-                          <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Frontend</p>
+                          <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">{pageDict.frontend}</p>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {project.frontendTech.map((tech: string) => (
@@ -230,7 +221,7 @@ export default function ProjectsPage({
                       href={`/${locale}/contact?project=${project.id}`}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors group/link"
                     >
-                      {locale === "fr" ? "Discuter d'un projet similaire" : "Discuss a similar project"}
+                      {pageDict.discuss_project}
                       <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>

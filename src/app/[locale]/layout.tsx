@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Footer } from "@/components/footer/Footer";
+import { getDictionary } from "@/lib/get-dictionary";
+import { i18n } from "@/lib/dictionaries";
+import type { Locale } from "@/lib/dictionaries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +23,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const typedLocale = locale as Locale;
+  const dict = await getDictionary(typedLocale);
 
-  const title =
-    locale === "fr"
-      ? "EreborHub conçoit des infrastructures sécurisées et des plateformes d'identité"
-      : "EreborHub engineers secure infrastructure and identity platforms";
-
-  const description =
-    locale === "fr"
-      ? "EreborHub permet aux entreprises modernes de croître avec confiance et impact grâce à des solutions technologiques premium."
-      : "EreborHub empowers modern businesses to scale with confidence and impact through premium technology solutions.";
+  const title = dict.metadata.site.title;
+  const description = dict.metadata.site.description;
 
   return {
     metadataBase: new URL("https://ereborhub.cloud"),
@@ -51,7 +49,7 @@ export async function generateMetadata({
     creator: "EreborHub",
     openGraph: {
       type: "website",
-      locale: locale === "fr" ? "fr_FR" : "en_US",
+      locale: typedLocale === "fr" ? "fr_FR" : "en_US",
       url: `https://ereborhub.cloud/${locale}`,
       siteName: "EreborHub",
       title,
@@ -85,9 +83,6 @@ export async function generateMetadata({
   };
 }
 
-import { i18n } from "@/lib/dictionaries";
-import type { Locale } from "@/lib/dictionaries";
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
 }
@@ -101,6 +96,7 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   const typedLocale = locale as Locale;
+  const dict = await getDictionary(typedLocale);
 
   return (
     <html
@@ -108,9 +104,9 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-slate-900">
-        <Navbar locale={typedLocale} />
+        <Navbar locale={typedLocale} dict={dict.nav} />
         <main className="flex-1">{children}</main>
-        <Footer locale={typedLocale} />
+        <Footer locale={typedLocale} dict={dict.footer} />
       </body>
     </html>
   );

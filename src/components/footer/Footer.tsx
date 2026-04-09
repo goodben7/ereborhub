@@ -1,21 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, Twitter, Linkedin, Github, ExternalLink, Globe } from "lucide-react";
+import { Mail, MapPin, Linkedin, ExternalLink } from "lucide-react";
+import type { FooterDictionary } from "@/lib/dictionaries";
 
-export function Footer({ locale }: { locale: string }) {
+export function Footer({ locale, dict }: { locale: string; dict: FooterDictionary }) {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    [locale === "fr" ? "Services" : "Services"]: [
-      { label: locale === "fr" ? "Logiciels Sur Mesure" : "Custom Software", href: `/${locale}/services#software` },
-      { label: locale === "fr" ? "Identité Numérique" : "Digital Identity", href: `/${locale}/services#identity` },
-      { label: locale === "fr" ? "Infrastructure Cloud" : "Cloud Solutions", href: `/${locale}/services#cloud` },
-      { label: locale === "fr" ? "Solutions Entreprise" : "Business Software", href: `/${locale}/services#business` },
+    [dict.services_title]: [
+      { label: dict.custom_software, href: `/${locale}/services#software` },
+      { label: dict.digital_identity, href: `/${locale}/services#identity` },
+      { label: dict.cloud_solutions, href: `/${locale}/services#cloud` },
+      { label: dict.business_software, href: `/${locale}/services#business` },
     ],
-    [locale === "fr" ? "Entreprise" : "Company"]: [
-      { label: locale === "fr" ? "À Propos" : "About Us", href: `/${locale}/about` },
-      { label: locale === "fr" ? "Projets" : "Projects", href: `/${locale}/projects` },
-      { label: locale === "fr" ? "Contact" : "Contact", href: `/${locale}/contact` },
+    [dict.company_title]: [
+      { label: dict.about_us, href: `/${locale}/about` },
+      { label: dict.projects, href: `/${locale}/projects` },
+      { label: dict.contact, href: `/${locale}/contact` },
     ],
   };
 
@@ -54,7 +55,7 @@ export function Footer({ locale }: { locale: string }) {
               <div className="w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl group-hover:scale-105 group-hover:border-primary/40 group-hover:bg-white/10 transition-all duration-500 shadow-xl ring-1 ring-white/5">
                 <Image
                   src="/eroborlogo-1.png"
-                  alt="EreborHub Logo"
+                  alt={dict.logo_alt}
                   width={26}
                   height={26}
                   className="object-contain"
@@ -65,9 +66,7 @@ export function Footer({ locale }: { locale: string }) {
               </span>
             </Link>
             <p className="text-[15px] text-slate-500 leading-relaxed mb-10 max-w-sm">
-              {locale === "fr" 
-                ? "Conception d'infrastructures numériques haute performance et d'écosystèmes sécurisés pour la prochaine génération d'innovateurs mondiaux."
-                : "Architecting high-performance digital infrastructure and regulatory-compliant ecosystems for the next generation of global innovators."}
+              {dict.description}
             </p>
 
             {/* Social links as compact cards */}
@@ -114,7 +113,7 @@ export function Footer({ locale }: { locale: string }) {
           {/* Contact Column (4 columns) */}
           <div className="lg:col-span-4 pl-0 lg:pl-12">
             <h3 className="text-white font-black text-[11px] mb-8 tracking-[0.25em] uppercase opacity-90">
-              {locale === "fr" ? "Contactez-nous" : "Get in touch"}
+              {dict.get_in_touch}
             </h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors group">
@@ -149,7 +148,7 @@ export function Footer({ locale }: { locale: string }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
               <p className="text-[13px] font-medium text-slate-600 tracking-wide">
-                © {currentYear} EreborHub.
+                © {currentYear} EreborHub. {dict.all_rights_reserved}
               </p>
             </div>
           </div>

@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Code2, ShieldCheck, Cloud, Building2, ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { services } from "@/lib/data/services";
+import type { ServicesDictionary } from "@/lib/dictionaries";
 
-export function ServicesSection({ locale, dict }: { locale: "en" | "fr"; dict: any }) {
+export function ServicesSection({ locale, dict }: { locale: "en" | "fr"; dict: ServicesDictionary }) {
   return (
     <section className="py-24 relative overflow-hidden bg-white" id="services" aria-labelledby="services-title">
       {/* Subtle Background Elements */}
@@ -96,15 +97,13 @@ export function ServicesSection({ locale, dict }: { locale: "en" | "fr"; dict: a
           <div className="relative z-10 p-10 sm:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="max-w-2xl text-center md:text-left">
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 tracking-tight leading-[1.1]">
-                {locale === "fr" ? "Prêt à transformer votre" : "Ready to transform your"}<br className="hidden sm:block" />
+                {dict.cta_title_prefix}<br className="hidden sm:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 inline-block mt-2">
-                  {locale === "fr" ? "univers numérique ?" : "digital landscape?"}
+                  {dict.cta_title_highlight}
                 </span>
               </h3>
               <p className="text-lg text-slate-400 font-medium">
-                {locale === "fr" 
-                  ? "Rejoignez plus de 50 partenaires qui font confiance à EreborHub." 
-                  : "Join 50+ partners who trust EreborHub for mission-critical infrastructure."}
+                {dict.cta_description}
               </p>
             </div>
 
@@ -114,7 +113,7 @@ export function ServicesSection({ locale, dict }: { locale: "en" | "fr"; dict: a
             >
               <div className="absolute inset-0 bg-blue-500/30 blur-xl rounded-2xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
               <div className="relative flex items-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-slate-50 transition-colors shadow-xl ring-1 ring-white/10 group-hover/btn:ring-white/50 group-hover/btn:scale-[1.02] active:scale-95 duration-300 ease-out">
-                {locale === "fr" ? "Contactez-nous" : "Get in touch"}
+                {dict.cta_button}
                 <ArrowRight className="w-5 h-5 text-blue-600 group-hover/btn:translate-x-1 transition-transform" />
               </div>
             </Link>

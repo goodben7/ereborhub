@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { services } from "@/lib/data/services";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getDictionaryByLocale } from "@/lib/client-dictionaries";
 
 const AnimatedHeroBackground = () => {
   return (
@@ -66,6 +67,8 @@ export default function ServicesPage({
 }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as "en" | "fr";
+  const dict = getDictionaryByLocale(locale);
+  const pageDict = dict.services_page;
 
   return (
     <div className="bg-white min-h-screen">
@@ -82,9 +85,9 @@ export default function ServicesPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.1]"
           >
-            {locale === "fr" ? "Des services conçus pour" : "Capabilities built for"} <br />
+            {pageDict.hero.title_prefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "chaque défi" : "every challenge"}
+              {pageDict.hero.title_highlight}
             </span>
           </motion.h1>
           <motion.p
@@ -93,9 +96,7 @@ export default function ServicesPage({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            {locale === "fr" 
-              ? "Quatre domaines d'expertise couvrant l'ensemble des besoins technologiques modernes — des logiciels à grande échelle aux réseaux d'identité mondiaux."
-              : "Four core service areas covering the full spectrum of modern technology needs — from high-scale software to global identity networks."}
+            {pageDict.hero.description}
           </motion.p>
         </div>
       </section>
@@ -126,7 +127,10 @@ export default function ServicesPage({
                   </p>
 
                   <div className="pt-4 border-t border-slate-100">
-                    <ul className="grid grid-cols-1 sm:grid-cols-1 gap-x-6 gap-y-4" aria-label={locale === "fr" ? `Caractéristiques de ${service.fullTitle[locale]}` : `Key features of ${service.fullTitle[locale]}`}>
+                    <ul
+                      className="grid grid-cols-1 sm:grid-cols-1 gap-x-6 gap-y-4"
+                      aria-label={pageDict.features_aria_label.replace("{service}", service.fullTitle[locale])}
+                    >
                       {service.features[locale].map((feature: string) => (
                         <li key={feature} className="flex items-start gap-3">
                           <div className="mt-1" style={{ color: service.colorHex }}>
@@ -186,7 +190,7 @@ export default function ServicesPage({
                         className="relative w-32 h-32 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-2xl overflow-hidden"
                         style={{ boxShadow: `0 25px 50px -12px ${service.glowUrl}` }}
                         role="img"
-                        aria-label={`${service.fullTitle} Icon`}
+                        aria-label={pageDict.icon_aria_label.replace("{service}", service.fullTitle[locale])}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
                         <service.icon className="w-12 h-12 relative z-10" style={{ color: service.colorHex }} strokeWidth={1.5} aria-hidden="true" />

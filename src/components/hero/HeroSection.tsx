@@ -2,11 +2,12 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, Shield, Cloud, Code, Zap } from "lucide-react";
+import { ArrowRight, Shield, Cloud, Code } from "lucide-react";
 import { useRef } from "react";
 import { BackgroundSquares } from "./BackgroundSquares";
+import type { HeroDictionary } from "@/lib/dictionaries";
 
-export function HeroSection({ locale, dict }: { locale: string; dict: any }) {
+export function HeroSection({ locale, dict }: { locale: string; dict: HeroDictionary }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);

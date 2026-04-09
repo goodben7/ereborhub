@@ -3,8 +3,8 @@
 import { use } from "react";
 import { motion } from "framer-motion";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { MapPin, Mail, Clock, ArrowRight, Globe, Linkedin, Github } from "lucide-react";
-import Link from "next/link";
+import { MapPin, Mail, ArrowRight, Globe } from "lucide-react";
+import { getDictionaryByLocale } from "@/lib/client-dictionaries";
 
 const AnimatedHeroBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -49,6 +49,8 @@ export default function ContactPage({
 }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as "en" | "fr";
+  const dict = getDictionaryByLocale(locale);
+  const pageDict = dict.contact_page;
 
   return (
     <div className="bg-white min-h-screen">
@@ -63,9 +65,9 @@ export default function ContactPage({
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-[1.08]"
           >
-            {locale === "fr" ? "Bâtissons quelque chose de" : "Let's build something"} <br />
+            {pageDict.hero.title_prefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-              {locale === "fr" ? "remarquable ensemble" : "remarkable together"}
+              {pageDict.hero.title_highlight}
             </span>
           </motion.h1>
           <motion.p
@@ -74,9 +76,7 @@ export default function ContactPage({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-slate-400 max-w-xl mx-auto leading-relaxed"
           >
-            {locale === "fr" 
-              ? "Parlez-nous de votre projet et nous vous répondrons dans un délai d'un jour ouvrable avec une réponse réfléchie."
-              : "Tell us about your project and we'll get back to you within one business day with a thoughtful response."}
+            {pageDict.hero.description}
           </motion.p>
         </div>
       </section>
@@ -121,15 +121,13 @@ export default function ContactPage({
 
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 tracking-tight leading-snug">
-                {locale === "fr" ? "Prêt à commencer ?" : "Ready to start?"} <br />
+                {pageDict.intro.title_prefix} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                  {locale === "fr" ? "Nous serions ravis de vous entendre." : "We'd love to hear from you."}
+                  {pageDict.intro.title_highlight}
                 </span>
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-12">
-                {locale === "fr" 
-                  ? "Que vous ayez besoin d'une plateforme web personnalisée, d'un système de conformité ou d'une infrastructure cloud, notre équipe est là pour vous aider à le construire correctement."
-                  : "Whether you need a custom web platform, a compliance system, or cloud infrastructure — our team is here to help you build it right."}
+                {pageDict.intro.description}
               </p>
 
               {/* Info items */}
@@ -137,7 +135,7 @@ export default function ContactPage({
                 {[
                   {
                     icon: Mail,
-                    label: locale === "fr" ? "Email" : "Email",
+                    label: pageDict.info_labels.email,
                     value: "hello@ereborhub.cloud",
                     href: "mailto:hello@ereborhub.cloud",
                     color: "text-cyan-400",
@@ -145,7 +143,7 @@ export default function ContactPage({
                   },
                   {
                     icon: MapPin,
-                    label: locale === "fr" ? "Localisation" : "Location",
+                    label: pageDict.info_labels.location,
                     value: "N° 63, Avenue Colonel Mondjiba, Commune de la Gombe, Kinshasa",
                     href: null,
                     color: "text-blue-400",
@@ -153,7 +151,7 @@ export default function ContactPage({
                   },
                   {
                     icon: Globe,
-                    label: locale === "fr" ? "Site Web" : "Website",
+                    label: pageDict.info_labels.website,
                     value: "ereborhub.cloud",
                     href: `/${locale}`,
                     color: "text-violet-400",
@@ -198,16 +196,14 @@ export default function ContactPage({
           >
             <div className="max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">
-                {locale === "fr" ? "Parlez-nous de votre projet" : "Tell us about your project"}
+                {pageDict.form_section.title}
               </h2>
               <p className="text-slate-500 text-sm mb-10">
-                {locale === "fr" 
-                  ? "Remplissez le formulaire ci-dessous et notre équipe vous recontactera dans les 24 heures."
-                  : "Fill out the form below and our team will get back to you within 24 hours."}
+                {pageDict.form_section.description}
               </p>
 
               <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-                <ContactForm locale={locale} />
+                <ContactForm dict={dict.contact_form} />
               </div>
             </div>
           </motion.div>

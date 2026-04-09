@@ -7,19 +7,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import type { NavDictionary } from "@/lib/dictionaries";
 
 
-export function Navbar({ locale }: { locale: string }) {
-  const [isOpen, setIsOpen] = useState(false);
+export function Navbar({ locale, dict }: { locale: string; dict: NavDictionary }) {
+  const [openPathname, setOpenPathname] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const currentPath = pathname ?? `/${locale}`;
+  const isOpen = openPathname === currentPath;
 
   const navLinks = [
-    { label: locale === "fr" ? "Accueil" : "Home", href: `/${locale}` },
-    { label: locale === "fr" ? "Services" : "Services", href: `/${locale}/services` },
-    { label: locale === "fr" ? "Projets" : "Projects", href: `/${locale}/projects` },
-    { label: locale === "fr" ? "À Propos" : "About", href: `/${locale}/about` },
-    { label: locale === "fr" ? "Contact" : "Contact", href: `/${locale}/contact` },
+    { label: dict.home, href: `/${locale}` },
+    { label: dict.services, href: `/${locale}/services` },
+    { label: dict.projects, href: `/${locale}/projects` },
+    { label: dict.about, href: `/${locale}/about` },
+    { label: dict.contact, href: `/${locale}/contact` },
   ];
 
   const getAlternatePath = (l: string) => {
@@ -37,10 +40,6 @@ export function Navbar({ locale }: { locale: string }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   return (
     <nav
@@ -63,7 +62,7 @@ export function Navbar({ locale }: { locale: string }) {
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
               <Image 
                 src="/eroborlogo-1.png" 
-                alt={locale === "fr" ? "Logo EreborHub" : "EreborHub Logo"} 
+                alt={dict.logo_alt} 
                 width={40} 
                 height={40} 
                 className="object-contain"
@@ -138,13 +137,13 @@ export function Navbar({ locale }: { locale: string }) {
               href={`/${locale}/contact`}
               className="ml-4 px-5 py-2 rounded-xl bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              {locale === "fr" ? "Démarrer" : "Start Project"}
+              {dict.start_short}
             </Link>
           </div>
 
           {/* Mobile toggle */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setOpenPathname(isOpen ? null : currentPath)}
             className={cn(
               "md:hidden p-2 transition-colors",
               (!scrolled && isDarkTop) ? "text-white" : "text-slate-600 hover:text-primary"
@@ -163,7 +162,7 @@ export function Navbar({ locale }: { locale: string }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
+              onClick={() => setOpenPathname(null)}
               className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[-1]"
             />
             <motion.div
@@ -174,15 +173,15 @@ export function Navbar({ locale }: { locale: string }) {
               className="fixed right-0 top-0 bottom-0 w-[280px] bg-white shadow-2xl z-50 p-6 flex flex-col"
             >
               <div className="flex justify-between items-center mb-10">
-                <span className="text-xl font-bold">{locale === "fr" ? "Menu" : "Menu"}</span>
-                <button onClick={() => setIsOpen(false)} className="p-2">
+                <span className="text-xl font-bold">{dict.menu}</span>
+                <button onClick={() => setOpenPathname(null)} className="p-2">
                   <X className="w-6 h-6" />
                 </button>
               </div>
 
               {/* Mobile Language Switcher */}
               <div className="flex items-center gap-4 mb-8 p-3 rounded-2xl bg-slate-50 border border-slate-100">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{locale === "fr" ? "Langue" : "Language"}</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{dict.language}</span>
                 <div className="flex items-center gap-3 ml-auto">
                   <Link
                     href={getAlternatePath("en")}
@@ -211,7 +210,7 @@ export function Navbar({ locale }: { locale: string }) {
                   <Link
                     key={link.label}
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setOpenPathname(null)}
                     className={cn(
                       "px-4 py-3 rounded-xl text-lg font-medium transition-all",
                       pathname === link.href 
@@ -225,10 +224,10 @@ export function Navbar({ locale }: { locale: string }) {
               </div>
               <Link
                 href={`/${locale}/contact`}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setOpenPathname(null)}
                 className="w-full mt-auto py-4 rounded-2xl bg-primary text-white font-bold text-center shadow-xl shadow-primary/20"
               >
-                {locale === "fr" ? "Démarrer un Projet" : "Start Project"}
+                {dict.start_project}
               </Link>
             </motion.div>
           </>

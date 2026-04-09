@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const GRID_SIZE = 100;
 const MAX_PATHS = 6;
@@ -110,7 +110,6 @@ const CircuitLine = ({ path, cycleId }: { path: CircuitPath; cycleId: number }) 
 export function BackgroundSquares() {
   const [paths, setPaths] = useState<CircuitPath[]>([]);
   const [cycleId, setCycleId] = useState(0);
-  const [isClient, setIsClient] = useState(false);
 
   // Mouse Parallax values
   const mouseX = useMotionValue(0);
@@ -167,7 +166,6 @@ export function BackgroundSquares() {
 
   // 2. Heartbeat Rhythm Loop
   useEffect(() => {
-    setIsClient(true);
     let active = true;
 
     const pulseCycle = async () => {
@@ -176,14 +174,17 @@ export function BackgroundSquares() {
       // Pulse 1: Strong (Lub)
       const isMobile = window.innerWidth < 768;
       const count1 = isMobile ? (Math.floor(Math.random() * 1) + 1) : (Math.floor(Math.random() * 2) + 3);
-      setPaths(Array.from({ length: count1 }).map(() => generatePath('strong')));
+      setPaths(Array.from({ length: Math.min(count1, MAX_PATHS) }).map(() => generatePath('strong')));
       setCycleId(prev => prev + 1);
 
       await new Promise(r => setTimeout(r, 200)); // Pause
 
       // Pulse 2: Soft (Dub)
       const count2 = isMobile ? 1 : (Math.floor(Math.random() * 2) + 1);
-      setPaths(prev => [...prev.slice(-2), ...Array.from({ length: count2 }).map(() => generatePath('soft'))]);
+      setPaths(prev => [
+        ...prev.slice(-(MAX_PATHS - count2)),
+        ...Array.from({ length: count2 }).map(() => generatePath('soft'))
+      ]);
       setCycleId(prev => prev + 1);
 
       await new Promise(r => setTimeout(r, 2000)); // Rest phase
@@ -203,8 +204,6 @@ export function BackgroundSquares() {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [generatePath, mouseX, mouseY]);
-
-  if (!isClient) return <div className="absolute inset-0 bg-white" />;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none bg-white">
